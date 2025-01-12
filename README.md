@@ -19,3 +19,7 @@ To run the code, run
 ```
 python3 HAK.py -d
 ```
+
+ So far, i used yolo11n.pt because it is the lighest model. There are different options which we can find on the website.
+
+ The code and the video example is attached

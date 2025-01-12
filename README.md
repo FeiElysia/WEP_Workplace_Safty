@@ -7,3 +7,8 @@
 ```
 pip install ultralytics opencv-python-headless
 ```
+
+
+```
+python3 HAK.py -d
+```

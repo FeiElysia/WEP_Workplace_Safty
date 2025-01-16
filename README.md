@@ -18,7 +18,7 @@ https://arxiv.org/pdf/2407.04590
 **4. The website with the videos we can use to test the performance**  
 https://www.pexels.com/search/videos/construction%20worker/
 
-**5. The YOLO model. The most convenient and efficient model for me so far for Object Detection and Pose Estimation**  
+**5. The YOLO model. The most convenient and efficient model (fast ingerence) for me so far for Object Detection and Pose Estimation**  
 https://github.com/ultralytics/ultralytics
 
 Seems that here we have 2 types of problems:  

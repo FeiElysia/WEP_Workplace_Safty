@@ -23,10 +23,12 @@ https://www.pexels.com/search/videos/construction%20worker/
 **5. The YOLO model. The most convenient and efficient model (fast ingerence) for me so far for Object Detection and Pose Estimation**  
 https://github.com/ultralytics/ultralytics  
 
+ pip install ultralytics opencv-python-headless  
+
 _______________________________________________________________________________________________________________________________________
 
 Seems that here we have 2 types of problems:  
-1. The basic problem:
+1. The **basic** problem:
    
    1.1. Detect person in frame  
    1.2. Count the number  of peole  
@@ -35,7 +37,7 @@ Seems that here we have 2 types of problems:
    1.5. Pose estimation  
    1.6. Activity classification
    
-2. The advanced problem:
+2. The **advanced** problem:
    
    2.1. Low resolution of CCTV footage  
    2.2. Low contrast (colors) with background  
@@ -46,7 +48,9 @@ Seems that here we have 2 types of problems:
 
 As i see it, we need to solve the basic problems first, test them, and make sure it works fine, and only then handle the advanced problems (you are welcome to suggest different options).  
 
-For the basic problems, so far i can see 4 potential solutions:  
+_______________________________________________________________________________________________________________________________________
+
+For the **basic** problems, so far i can see 4 potential solutions:  
 
 **Solution 1:**  
 
@@ -55,7 +59,7 @@ This workflow was described in https://www.sciencedirect.com/science/article/pii
 2. Based on the neckpoints from the pose estimation, calculate the bbox for hands, legs, head, and upper body
 3. Crop these bbox and send to the classifier
 4. Predict if the bbox has any PPE or not  
-   This solution requires pretraining for the classifier
+   This solution requires pretraining for the classifier. I din't solve it
 
 **Solution 2:** 
 
@@ -64,11 +68,11 @@ This workflow was described in [https://www.sciencedirect.com/science/article/pi
 2. Take the custom dataset with PPE
 3. Fine-tune the YOLO model with the custom dataset
 
-In this work, the fine-tuning was already done, and the trained model was published. I tested it, and it can identify the head, hands, ears, and face good, but the estimation of PPE is not very good  
+In this work, the fine-tuning was already done, and the trained model was published. I tested it, and it can identify the head, hands, ears, and face good, but the estimation of PPE is not very good. For this solution, see X and for results see Y  
 
 **Solution 3:** 
 
-We can use YOLO-World model. This model identifies object just from the word description, even without pre-training on the custom datasets. I tested it and it works fine with the helmets, glasses, and shoes  
+We can use YOLO-World model. This model identifies object just from the word description, even without pre-training on the custom datasets. I tested it and it works fine with the helmets, glasses, and shoes. It is the best solution for me so far. For this solution, see X and for results see Y  
 
 **Solution 4:** 
 As Junjie proposed:  
@@ -76,24 +80,12 @@ As Junjie proposed:
 2. Crop the image around the bbox
 3. Ask any language model relative questions regarding these crops
 
+_______________________________________________________________________________________________________________________________________
 
-First, i installed the latest Pytorch as follows  
-```
-conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
-```
-Next, i installed the model and cv2 library as follows
+For the **advanced** problems, i propose to expand the available datasets and fine-tune the model with it. The available datasets can be   
+1. Down-sampled or blured (problem 1 of low resolution cameras)  
+2. Reduced in contrast  
+3. Darken in  
+4. Distort to simulate different camera angles  
 
-```
-pip install ultralytics opencv-python-headless
-```
-
-To run the code, run
-```
-python3 HAK.py -d
-```
-
- So far, i used yolo11n.pt because it is the lighest model. There are different options which we can find on the website.
-
- <img src="assets/Models.JPG" alt="" width="300"/>
-
- The code and the video example is attached
+it is just what comes to my mind. I didn't make any literature research about this problem so far  

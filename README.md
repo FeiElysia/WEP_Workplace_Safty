@@ -82,7 +82,7 @@ As Junjie proposed:
 
 _______________________________________________________________________________________________________________________________________
 
-For the **advanced** problems, i propose to expand the available datasets and fine-tune the model with it. The available datasets can be   
+For the **advanced** problems, i propose to expand the available datasets and fine-tune the YOLO model with it. The available datasets can be   
 1. Down-sampled or blured (problem 1 of low resolution cameras)  
 2. Reduced in contrast  
 3. Darken in  

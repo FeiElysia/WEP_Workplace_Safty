@@ -26,7 +26,7 @@ https://github.com/ultralytics/ultralytics
 _______________________________________________________________________________________________________________________________________
 
 Seems that here we have 2 types of problems:  
-1. The basic problem. Incudes
+1. The basic problem:
    
    1.1. Detect person in frame  
    1.2. Count the number  of peole  

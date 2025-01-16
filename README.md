@@ -6,6 +6,8 @@
 
 Hi guys. Here is the summary of everything i found so far, as well as ideas for potential solutions.
 
+_______________________________________________________________________________________________________________________________________  
+
 **1. The extensive literature review**  
 https://link.springer.com/article/10.1007/s10462-024-10978-x  
 
@@ -19,7 +21,9 @@ https://arxiv.org/pdf/2407.04590
 https://www.pexels.com/search/videos/construction%20worker/
 
 **5. The YOLO model. The most convenient and efficient model (fast ingerence) for me so far for Object Detection and Pose Estimation**  
-https://github.com/ultralytics/ultralytics
+https://github.com/ultralytics/ultralytics  
+
+_______________________________________________________________________________________________________________________________________
 
 Seems that here we have 2 types of problems:  
 1. The basic problem. Incudes  

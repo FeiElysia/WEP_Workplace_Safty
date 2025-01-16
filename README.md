@@ -22,20 +22,20 @@ https://www.pexels.com/search/videos/construction%20worker/
 https://github.com/ultralytics/ultralytics
 
 Seems that here we have 2 types of problems:  
-1. The basic problem. Incudes
-   1.1. Detect person in frame
-   1.2. Count the number  of peole
-   1.3. What person is wearing - on the offshore drilling rig, the PPE are the helmer, glasses, gloves, boots, and coverall
-   1.4. Correct style of PPE - like the color and the proper usage
-   1.5. Pose estimation
-   1.6. Activity classification
-2. The advanced problem:
-   2.1.  Low resolution of CCTV footage
-   2.2. Low contrast (colors) with background
-   2.3. Low visibility (night)
-   2.4. Weather conditions (humidity, shadow)
-   2.5. Lack of labeled data from the fiels
-   2.6. Odd camera angles (view point)
+1. The basic problem. Incudes  
+   1.1. Detect person in frame  
+   1.2. Count the number  of peole  
+   1.3. What person is wearing - on the offshore drilling rig, the PPE are the helmer, glasses, gloves, boots, and coverall  
+   1.4. Correct style of PPE - like the color and the proper usage  
+   1.5. Pose estimation  
+   1.6. Activity classification  
+2. The advanced problem:  
+   2.1.  Low resolution of CCTV footage  
+   2.2. Low contrast (colors) with background  
+   2.3. Low visibility (night)  
+   2.4. Weather conditions (humidity, shadow)  
+   2.5. Lack of labeled data from the fiels  
+   2.6. Odd camera angles (view point)  
 
 
 First, i installed the latest Pytorch as follows  

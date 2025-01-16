@@ -61,7 +61,7 @@ This workflow was described in https://www.sciencedirect.com/science/article/pii
 
 This workflow was described in [https://www.sciencedirect.com/science/article/pii/S0925753521004860  ](https://arxiv.org/pdf/2407.04590)  
 1. Take the YOLO model
-2. Take the custom dataset
+2. Take the custom dataset with PPE
 3. Fine-tune the YOLO model with the custom dataset
 
 In this work, the fine-tuning was already done, and the trained model was published. I tested it, and it can identify the head, hands, ears, and face good, but the estimation of PPE is not very good  

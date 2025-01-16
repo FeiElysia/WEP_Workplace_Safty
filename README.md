@@ -54,7 +54,7 @@ This workflow was described in https://www.sciencedirect.com/science/article/pii
 1. Pose estimation
 2. Based on the neckpoints from the pose estimation, calculate the bbox for hands, legs, head, and upper body
 3. Crop these bbox and send to the classifier
-4. Predict if the bbox has any PPE or not
+4. Predict if the bbox has any PPE or not  
    This solution requires pretraining for the classifier
 
 **Solution 2:** 

@@ -52,7 +52,7 @@ ________________________________________________________________________________
 
 For the **basic** problems, so far i can see 4 potential solutions:  
 
-**Solution 1:**  
+**Solution 1:** (not done)   
 
 This workflow was described in https://www.sciencedirect.com/science/article/pii/S0925753521004860  
 1. Pose estimation
@@ -61,7 +61,7 @@ This workflow was described in https://www.sciencedirect.com/science/article/pii
 4. Predict if the bbox has any PPE or not  
    This solution requires pretraining for the classifier. I din't solve it
 
-**Solution 2:** 
+**Solution 2:** (done)  
 
 This workflow was described in [https://www.sciencedirect.com/science/article/pii/S0925753521004860  ](https://arxiv.org/pdf/2407.04590)  
 1. Take the YOLO model
@@ -70,11 +70,11 @@ This workflow was described in [https://www.sciencedirect.com/science/article/pi
 
 In this work, the fine-tuning was already done, and the trained model was published. I tested it, and it can identify the head, hands, ears, and face good, but the estimation of PPE is not very good. For this solution, see [HAK_ft.py](HAK_ft.py) and for results see [builders_out_ft.mp4](builders_out_ft.mp4)   
 
-**Solution 3:** 
+**Solution 3:** (done)   
 
 We can use YOLO-World model. This model identifies object just from the word description, even without pre-training on the custom datasets. I tested it and it works fine with the helmets, glasses, and shoes. It is the best solution for me so far. For this solution, see [HAK_restr.py](HAK_restr.py) and for results see [builders_out_restr.mp4](builders_out_restr.mp4)  
 
-**Solution 4:**  
+**Solution 4:** (not done) 
 
 As Junjie proposed:  
 1. Take the bbox around each person  

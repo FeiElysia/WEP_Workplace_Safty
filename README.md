@@ -6,7 +6,7 @@
 
 Hi guys. Here is the summary of everything i found so far, as well as ideas for potential solutions.
 
-**1. The literature review**  
+**1. The extensive literature review**  
 https://link.springer.com/article/10.1007/s10462-024-10978-x  
 
 **2. The paper from this literature review with one of the best results**  

@@ -74,7 +74,8 @@ In this work, the fine-tuning was already done, and the trained model was publis
 
 We can use YOLO-World model. This model identifies object just from the word description, even without pre-training on the custom datasets. I tested it and it works fine with the helmets, glasses, and shoes. It is the best solution for me so far. For this solution, see X and for results see Y  
 
-**Solution 4:** 
+**Solution 4:**  
+
 As Junjie proposed:  
 1. Take the bbox around each person  
 2. Crop the image around the bbox

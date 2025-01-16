@@ -37,6 +37,29 @@ Seems that here we have 2 types of problems:
    2.5. Lack of labeled data from the fiels  
    2.6. Odd camera angles (view point)  
 
+As i see it, we need to solve the basic problems first, test them, and make sure it works fine, and only then handle the advanced problems (you are welcome to suggest different options).  
+
+For the basic problems, so far i can see 4 potential solutions:  
+Solution 1:  
+This workflow was described in https://www.sciencedirect.com/science/article/pii/S0925753521004860  
+1. Pose estimation
+2. Based on the neckpoints from the pose estimation, calculate the bbox for hands, legs, head, and upper body
+3. Crop these bbox and send to the classifier
+4. Predict if the bbox has any PPE or not
+   This solution requires pretraining for the classifier
+
+Solution 2:  
+This workflow was described in [https://www.sciencedirect.com/science/article/pii/S0925753521004860  ](https://arxiv.org/pdf/2407.04590)  
+1. Take the YOLO model
+2. Take the custom dataset
+3. Fine-tune the YOLO model with the custom dataset
+
+In this work, the fine-tuning was already done, and the trained model was published. I tested it, and it can identify the head, hands, ears, and face good, but the estimation of PPE is not very good  
+
+Solution 3:  
+
+
+
 
 First, i installed the latest Pytorch as follows  
 ```

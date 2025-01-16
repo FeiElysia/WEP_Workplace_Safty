@@ -6,10 +6,22 @@
 
 Hi guys. Here is the summary of everything i found so far, as well as ideas for potential solutions.
 
-**1. The literature review**
-
-can be found here  
+**1. The literature review**  
 https://link.springer.com/article/10.1007/s10462-024-10978-x  
+
+**2. The paper from this literature review with one of the best results**  
+https://www.sciencedirect.com/science/article/pii/S0925753521004860  
+
+**3. Available training datasets can be found here**   
+https://arxiv.org/pdf/2407.04590
+
+**4. The website with the videos we can use to test the performance**  
+https://www.pexels.com/search/videos/construction%20worker/
+
+**5. The YOLO model. The most convenient and efficient model for me so far for Object Detection and Pose Estimation**  
+https://github.com/ultralytics/ultralytics
+
+Based on the review of the sources above, i can propose 3 ways to start solving the issue:  
 
 
 First, i installed the latest Pytorch as follows  

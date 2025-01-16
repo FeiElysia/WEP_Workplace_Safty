@@ -55,7 +55,7 @@ For the **basic** problems, so far i can see 4 potential solutions:
 **Solution 1:** (not done)   
 
 This workflow was described in https://www.sciencedirect.com/science/article/pii/S0925753521004860  
-1. Pose estimation
+1. Pose estimation (can be easily done with YOLO model. See [HAK_pe.py](HAK_pe.py)) and [builders_out_pe.mp4](builders_out_pe.mp4)
 2. Based on the neckpoints from the pose estimation, calculate the bbox for hands, legs, head, and upper body
 3. Crop these bbox and send to the classifier
 4. Predict if the bbox has any PPE or not  

@@ -4,6 +4,13 @@
 
 <img src="assets/2.png" alt="" width="1000"/>
 
+Hi guys. Here is the summary of everything i found so far, as well as ideas for potential solutions.
+
+**1. The literature review**
+
+can be found here  
+https://link.springer.com/article/10.1007/s10462-024-10978-x  
+
 
 First, i installed the latest Pytorch as follows  
 ```

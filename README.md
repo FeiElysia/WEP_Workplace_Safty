@@ -26,7 +26,8 @@ https://github.com/ultralytics/ultralytics
 _______________________________________________________________________________________________________________________________________
 
 Seems that here we have 2 types of problems:  
-1. The basic problem. Incudes  
+1. The basic problem. Incudes
+   
    1.1. Detect person in frame  
    1.2. Count the number  of peole  
    1.3. What person is wearing - on the offshore drilling rig, the PPE are the helmer, glasses, gloves, boots, and coverall  
@@ -34,7 +35,8 @@ Seems that here we have 2 types of problems:
    1.5. Pose estimation  
    1.6. Activity classification
    
-2. The advanced problem:  
+2. The advanced problem:
+   
    2.1.  Low resolution of CCTV footage  
    2.2. Low contrast (colors) with background  
    2.3. Low visibility (night)  

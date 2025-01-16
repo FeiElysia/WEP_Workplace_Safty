@@ -68,11 +68,11 @@ This workflow was described in [https://www.sciencedirect.com/science/article/pi
 2. Take the custom dataset with PPE
 3. Fine-tune the YOLO model with the custom dataset
 
-In this work, the fine-tuning was already done, and the trained model was published. I tested it, and it can identify the head, hands, ears, and face good, but the estimation of PPE is not very good. For this solution, see HAK_ft.py and for results see Y  
+In this work, the fine-tuning was already done, and the trained model was published. I tested it, and it can identify the head, hands, ears, and face good, but the estimation of PPE is not very good. For this solution, see [HAK_ft.py](HAK_ft.py) and for results see [builders_out_ft.mp4](builders_out_ft.mp4)   
 
 **Solution 3:** 
 
-We can use YOLO-World model. This model identifies object just from the word description, even without pre-training on the custom datasets. I tested it and it works fine with the helmets, glasses, and shoes. It is the best solution for me so far. For this solution, see HAK_restr.py and for results see Y  
+We can use YOLO-World model. This model identifies object just from the word description, even without pre-training on the custom datasets. I tested it and it works fine with the helmets, glasses, and shoes. It is the best solution for me so far. For this solution, see [HAK_restr.py](HAK_restr.py) and for results see [builders_out_restr.mp4](builders_out_restr.mp4)  
 
 **Solution 4:**  
 

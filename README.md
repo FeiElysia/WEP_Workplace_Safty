@@ -1,8 +1,8 @@
 # Task
 
-<img src="assets/1.png" alt="" width="1000"/>
+<img src="assets/1.png" alt="" width="500"/>
 
-<img src="assets/2.png" alt="" width="1000"/>
+<img src="assets/2.png" alt="" width="500"/>
 
 Hi guys. Here is the summary of everything i found so far, as well as ideas for potential solutions.
 

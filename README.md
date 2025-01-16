@@ -37,7 +37,7 @@ Seems that here we have 2 types of problems:
    
 2. The advanced problem:
    
-   2.1.  Low resolution of CCTV footage  
+   2.1. Low resolution of CCTV footage  
    2.2. Low contrast (colors) with background  
    2.3. Low visibility (night)  
    2.4. Weather conditions (humidity, shadow)  
@@ -68,7 +68,13 @@ In this work, the fine-tuning was already done, and the trained model was publis
 
 **Solution 3:** 
 
+We can use YOLO-World model. This model identifies object just from the word description, even without pre-training on the custom datasets. I tested it and it works fine with the helmets, glasses, and shoes  
 
+**Solution 4:** 
+As Junjie proposed:  
+1. Take the bbox around each person  
+2. Crop the image around the bbox
+3. Ask any language model relative questions regarding these crops
 
 
 First, i installed the latest Pytorch as follows  

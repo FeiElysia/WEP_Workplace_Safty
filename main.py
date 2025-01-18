@@ -5,6 +5,10 @@ from collections import defaultdict
 import argparse
 import os
 from PIL import Image, ImageDraw
+import torch
+from transformers import Qwen2VLForConditionalGeneration, AutoTokenizer, AutoProcessor
+from qwen_vl_utils import process_vision_info
+import json
 
 def draw_boxes(img, boxes, outpath):
     
@@ -17,7 +21,71 @@ def draw_boxes(img, boxes, outpath):
 
     return img
 
-def answering(model, key_frames, outpath):
+@torch.no_grad()
+def generate(question, images, template, processor, model):
+    
+    question = f"{question}\nAnswer the question using a single word or phrase."
+    template[0]["content"].append(
+            {
+                "type": "text",
+                "text": question
+            }
+        )
+    text = processor.apply_chat_template(template, tokenize = False, add_generation_prompt = True)
+
+    inputs = processor(
+        text = [text],
+        images = images,
+        videos = None,
+        padding = True,
+        return_tensors = "pt",
+    )
+    inputs = inputs.to("cuda")
+
+    generated_ids = model.generate(**inputs, max_new_tokens = 128)
+    generated_ids_trimmed = [
+        out_ids[len(in_ids) :] for in_ids, out_ids in zip(inputs.input_ids, generated_ids)
+    ]
+    text_outputs = processor.batch_decode(
+        generated_ids_trimmed, skip_special_tokens=True, clean_up_tokenization_spaces=False
+    )
+
+    return text_outputs[0]
+
+def inference(processor, model, images):
+    
+    # construct the input
+    template = [
+            {
+                "role": "user",
+                "content": [],
+            }
+        ]
+    
+    for image in images:
+        template[0]["content"].append(
+            {
+                "type": "image",
+                "image": image,
+            }
+        )
+        
+    image_inputs, video_inputs = process_vision_info(template)
+    q1 = "Does the person in the red box wearing a coverall?"
+    q2 = "What color coverall is the person in the red box wearing?"
+    q3 = "What activities is the person inside the red box currently doing?"
+    a1 = generate(q1, image_inputs, template, processor, model)
+    a2 = generate(q2, image_inputs, template, processor, model)
+    a3 = generate(q3, image_inputs, template, processor, model)
+    
+    return {
+        "coverall": a1,
+        "color": a2,
+        "activities": a3
+    }
+    
+
+def answering(processor, model, key_frames, outpath):
     
     outpath = '.'.join(outpath.split(".")[:-1])
     os.makedirs(outpath, exist_ok = True)
@@ -33,25 +101,46 @@ def answering(model, key_frames, outpath):
     track_ids = list(set(start + mid + end))
     track_ids.sort()
     
-    track_person = []
-    
+    count_people = 0
+    results = {
+        "people": 0,
+    }
     for track_id in track_ids:
+        
+        count_people += 1
+        
         x1, y1, w1, h1 = key_frames["start"].get(track_id, (0, 0, 0, 0))
         x2, y2, w2, h2 = key_frames["mid"].get(track_id, (0, 0, 0, 0))
         x3, y3, w3, h3 = key_frames["end"].get(track_id, (0, 0, 0, 0))
-        draw_img1 = draw_boxes(img1, (x1, y1, w1, h1), os.path.join(outpath, f"{track_id}_start.jpg")) if w1 != 0 else None
-        draw_img2 = draw_boxes(img2, (x2, y2, w2, h2), os.path.join(outpath, f"{track_id}_mid.jpg")) if w2 != 0 else None
-        draw_img3 = draw_boxes(img3, (x3, y3, w3, h3), os.path.join(outpath, f"{track_id}_end.jpg")) if w3 != 0 else None
-
-        track_person.append([draw_img1, draw_img2, draw_img3])
+        draw_img1 = draw_boxes(img1.copy(), (x1, y1, w1, h1), os.path.join(outpath, f"{track_id}_start.jpg")) if w1 != 0 else None
+        draw_img2 = draw_boxes(img2.copy(), (x2, y2, w2, h2), os.path.join(outpath, f"{track_id}_mid.jpg")) if w2 != 0 else None
+        draw_img3 = draw_boxes(img3.copy(), (x3, y3, w3, h3), os.path.join(outpath, f"{track_id}_end.jpg")) if w3 != 0 else None
         
+        images = [img for img in [draw_img1, draw_img2, draw_img3] if img is not None]
+        answers = inference(processor, model, images)
+        results.update({
+            track_id: answers
+        })
+    
+    results["people"] = count_people
+    
+    with open(os.path.join(outpath, "results.json"), "w") as f:
+        json.dump(results, f, indent = 2)
         
-
 def main(args):
     
     # load model
     track_model = YOLO(args.track_model)
-    mllm = 1
+    
+    processor = AutoProcessor.from_pretrained(args.mllm)
+    mllm = Qwen2VLForConditionalGeneration.from_pretrained(
+        args.mllm,
+        torch_dtype = torch.bfloat16,
+        attn_implementation = "flash_attention_2",
+        device_map = "auto",
+    )
+    mllm.to("cuda")
+    mllm.eval()
     
     # load and save video
     cap = cv2.VideoCapture(args.video_path)
@@ -130,14 +219,14 @@ def main(args):
     out.release()
     cv2.destroyAllWindows()
     
-    answering(mllm, key_frames, outpath)
+    answering(processor, mllm, key_frames, outpath)
     
     
 if __name__ == "__main__":
     
     args = argparse.ArgumentParser()
     args.add_argument("--track_model", type=str, default="ckpts/yolo11n-pose.pt", help="Path to the detection and pose estimation model")
-    args.add_argument("--mllm", type=str, default="ckpts/qwen2-vl", help="Path to VQA model")
+    args.add_argument("--mllm", type=str, default="ckpts/Qwen2-VL-2B-Instruct", help="Path to VQA model")
     args.add_argument("--video_path", type=str, default="data/video1.mp4")
     args.add_argument("--output_path", type=str, default="outputs") 
     

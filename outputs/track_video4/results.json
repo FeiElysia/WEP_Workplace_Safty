@@ -1,0 +1,13 @@
+{
+  "people": 2,
+  "1": {
+    "type of clothing": "A safety vest",
+    "color of clothing": "Yellow",
+    "activities": "Inspect"
+  },
+  "2": {
+    "type of clothing": "A safety vest",
+    "color of clothing": "Yellow",
+    "activities": "Inspect"
+  }
+}

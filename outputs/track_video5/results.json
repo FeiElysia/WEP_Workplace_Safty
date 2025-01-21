@@ -1,0 +1,23 @@
+{
+  "people": 4,
+  "1": {
+    "type of clothing": "A safety vest",
+    "color of clothing": "Yellow",
+    "activities": "Pointing"
+  },
+  "2": {
+    "type of clothing": "A safety vest",
+    "color of clothing": "Yellow",
+    "activities": "Talking"
+  },
+  "3": {
+    "type of clothing": "A safety vest",
+    "color of clothing": "Yellow",
+    "activities": "Standing"
+  },
+  "4": {
+    "type of clothing": "A safety vest",
+    "color of clothing": "Yellow",
+    "activities": "Talking"
+  }
+}

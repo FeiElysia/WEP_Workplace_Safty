@@ -50,6 +50,8 @@ def generate(question, images, template, processor, model):
         generated_ids_trimmed, skip_special_tokens=True, clean_up_tokenization_spaces=False
     )
 
+    template[0]["content"].pop()
+
     return text_outputs[0]
 
 def inference(processor, model, images):
@@ -71,16 +73,17 @@ def inference(processor, model, images):
         )
         
     image_inputs, video_inputs = process_vision_info(template)
-    q1 = "Does the person in the red box wearing a coverall?"
-    q2 = "What color coverall is the person in the red box wearing?"
+    # q1 = "Does the person in the red box wearing a coverall?"
+    q1 = "Determine the type of clothing worn by the person in the red box. Specifically, identify whether the person is wearing:\nA coverall (a one-piece protective garment that covers the body from neck to ankles).\nA safety vest (a reflective vest typically worn over other clothing for visibility and safety).\nNo protective clothing (ordinary clothing without additional safety gear)."
+    q2 = "What color coverall/safety vest is the person in the red box wearing?"
     q3 = "What activities is the person inside the red box currently doing?"
     a1 = generate(q1, image_inputs, template, processor, model)
     a2 = generate(q2, image_inputs, template, processor, model)
     a3 = generate(q3, image_inputs, template, processor, model)
     
     return {
-        "coverall": a1,
-        "color": a2,
+        "type of clothing": a1,
+        "color of clothing": a2,
         "activities": a3
     }
     

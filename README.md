@@ -17,4 +17,9 @@ pip install qwen-vl-utils[decord]
 # run
 ```
 python main.py
+# or
+sh run.sh
 ```
+
+# Results
+check outputs for results

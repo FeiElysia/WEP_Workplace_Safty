@@ -22,7 +22,7 @@ python main.py
 sh run.sh
 ```
 
-For PPE detection:
+For PPE detection and classification:
 ```
 python HAK_ft.py
 ```  

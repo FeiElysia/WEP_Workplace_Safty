@@ -15,11 +15,17 @@ pip install qwen-vl-utils[decord]
 ```
 
 # run
+For Pose Estimation, Activity Classification, and PPE Style  
 ```
 python main.py
 # or
 sh run.sh
 ```
+
+For PPE detection:
+```
+python HAK_ft.py
+```  
 
 # Results
 check outputs for results
